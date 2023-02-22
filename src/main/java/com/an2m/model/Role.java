@@ -1,4 +1,4 @@
-package com.mm.model;
+package com.an2m.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.mm.controller;
+package com.an2m.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mm.model.Prospect;
-import com.mm.service.ProspectService;
+import com.an2m.model.Prospect;
+import com.an2m.service.ProspectService;
 
 
 @CrossOrigin(origins = "http://localhost:4200")

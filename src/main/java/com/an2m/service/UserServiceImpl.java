@@ -1,15 +1,15 @@
-package com.mm.service;
+package com.an2m.service;
 
 
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.mm.dto.UserDto;
-import com.mm.model.Role;
-import com.mm.model.User;
-import com.mm.repository.RoleRepository;
-import com.mm.repository.UserRepository;
+import com.an2m.dto.UserDto;
+import com.an2m.model.Role;
+import com.an2m.model.User;
+import com.an2m.repository.RoleRepository;
+import com.an2m.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;

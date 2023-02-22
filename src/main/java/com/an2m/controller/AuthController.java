@@ -1,4 +1,4 @@
-package com.mm.controller;
+package com.an2m.controller;
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 
@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mm.dto.UserDto;
-import com.mm.model.User;
-import com.mm.service.UserService;
+import com.an2m.dto.UserDto;
+import com.an2m.model.User;
+import com.an2m.service.UserService;
 
 import java.util.List;
 

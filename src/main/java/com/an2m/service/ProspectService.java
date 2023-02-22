@@ -1,16 +1,17 @@
-package com.mm.service;
+package com.an2m.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
-import com.mm.model.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
-import com.mm.repository.ProspectRepository;
+
+import com.an2m.model.*;
+import com.an2m.repository.ProspectRepository;
 
 @Component
 public class ProspectService {

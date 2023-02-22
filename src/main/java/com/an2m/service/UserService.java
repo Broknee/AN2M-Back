@@ -1,7 +1,7 @@
-package com.mm.service;
+package com.an2m.service;
 
-import com.mm.dto.UserDto;
-import com.mm.model.User;
+import com.an2m.dto.UserDto;
+import com.an2m.model.User;
 
 import java.util.List;
 

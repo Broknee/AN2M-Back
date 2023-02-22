@@ -1,9 +1,9 @@
-package com.mm.dto;
+package com.an2m.dto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mm.model.Role;
+import com.an2m.model.Role;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;

@@ -1,8 +1,8 @@
-package com.mm.security;
+package com.an2m.security;
 
-import com.mm.model.Role;
-import com.mm.model.User;
-import com.mm.repository.UserRepository;
+import com.an2m.model.Role;
+import com.an2m.model.User;
+import com.an2m.repository.UserRepository;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
