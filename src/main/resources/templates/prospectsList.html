@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Liste de prospects</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
+   </head>
+   <body>
+      <h1>Liste de prospects</h1>
+      <a href="addProspect">Ajouter un prospect</a>
+      <br/><br/>
+      <div class="container">
+         <table border="1">
+            <tr>
+               <th>Nom</th>
+               <th>Numéro de siret</th>
+               <th>Adresse</th>
+               <th>Code Postal</th>
+                <th>Ville</th>
+            </tr>
+            <tr th:each ="prospect : ${prospectsList}">
+               <td th:utext="${prospect.nom}">...</td>
+               <td th:utext="${prospect.numerosiret}">...</td>
+               <td th:utext="${prospect.adressepostale}">...</td>
+               <td th:utext="${prospect.codepostal}">...</td>
+               <td th:utext="${prospect.ville}">...</td>
+             
+               <td>
+                   <a th:href="@{/updateprospect/{id}(id=${prospect.id})}">Modifier</a>
+                   <a th:href="@{/delete_prospect/{id}(id=${prospect.id})}">Supprimer</a>
+               </td>
+             </tr>
+         </table>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,21 @@
+h1,h2 {
+	text-align: center;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+}
+
+table tr:nth-child(even){
+  background-color:lightgrey;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: center;
+}
+
+table th, table td {
+    padding: 5px;
+}
