@@ -1,6 +1,7 @@
 package com.an2m.controller;
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
+import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +29,7 @@ import java.util.List;
 @Controller
 @RestController
 @RequestMapping(path = "api")
+@Slf4j
 public class AuthController {
 
     private UserService userService;
@@ -63,20 +66,10 @@ public class AuthController {
     }
 
     // handler method to handle register user form submit request
-    @PostMapping("/register/save")
-    public String registration(@Validated @ModelAttribute("user") UserDto user,
-                               BindingResult result,
-                               Model model){
-        User existing = userService.findByEmail(user.getEmail());
-        if (existing != null) {
-            result.rejectValue("email", null, "There is already an account registered with that email");
-        }
-        if (result.hasErrors()) {
-            model.addAttribute("user", user);
-            return "register";
-        }
+    @PostMapping("/save")
+    public void registration (@RequestBody UserDto user){
+    	//log.info("nom:{},prénom : {0}",user.getNom(),user.getPrenom());
         userService.saveUser(user);
-        return "redirect:/register?success";
     }
 
     @GetMapping("/delete_user/{id}")

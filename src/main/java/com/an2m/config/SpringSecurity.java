@@ -28,13 +28,15 @@ public class SpringSecurity {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.
+       http.
       
         
         csrf().
         
         
-        disable()
+        disable();
+       
+       /* 
         
                 .authorizeHttpRequests((authorize) ->{
                         
@@ -69,8 +71,9 @@ public class SpringSecurity {
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .permitAll()
                 );
-        
-        
+ 
+        */
+       
         return http.build();
     }
 

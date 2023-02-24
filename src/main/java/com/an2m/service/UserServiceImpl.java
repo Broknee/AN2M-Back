@@ -33,18 +33,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(UserDto userDto) {
+    	
         User user = new User();
         user.setName(userDto.getFirstName() + " " + userDto.getLastName());
         user.setEmail(userDto.getEmail());
+        user.setPassword(userDto.getPassword());
+        
 
         //encrypt the password once we integrate spring security
-        //user.setPassword(userDto.getPassword());
-        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-       Role role = roleRepository.findByName("ROLE_USER");
+        //user.setPassword(userDto.getPassword()); 
+        //Role role = roleRepository.findByName("ROLE_USER");
+        Role role;
+        
+        
+        role = checkRoleExist(userDto.getAssignation());
        
-            role = checkRoleExist();
-    
         user.setRoles(Arrays.asList(role));
+      
         userRepository.save(user);
     }
 
@@ -81,9 +86,10 @@ public class UserServiceImpl implements UserService {
         return userDto;
     }
 
-    private Role checkRoleExist() {
+    private Role checkRoleExist(String assignation) {
         Role role = new Role();
-        role.setName("ROLE_USER");
+        role.setName(assignation);
+        
         return roleRepository.save(role);
     }
 

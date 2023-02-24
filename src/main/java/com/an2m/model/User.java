@@ -9,6 +9,8 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 @Data
 @Getter
 @Setter
@@ -32,7 +34,7 @@ public class User
 
     @Column(nullable=false)
     private String password;
-
+    @JsonBackReference
     @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinTable(
             name="users_roles",
