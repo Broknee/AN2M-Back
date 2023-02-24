@@ -10,9 +10,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import jakarta.annotation.security.PermitAll;
 
 @Configuration
 @EnableWebSecurity
@@ -28,48 +25,33 @@ public class SpringSecurity {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.
-      
-        
-        csrf().
-        
-        
-        disable()
-        
-                .authorizeHttpRequests((authorize) ->{
-                        
-							try {
-								authorize
-								      
-								        // .requestMatchers("/register/**").permitAll()
-								        .requestMatchers("/**").permitAll();
-
-								      //  .requestMatchers("/prospectsList","/error403","/addProspect","/delete_prospect/**","updateprospect/**","/").hasAnyRole("USER","ADMIN");
-
-								  
-//								
-//								authorize.requestMatchers("/delete_user/**").hasRole("ADMIN");
-//								authorize.and().exceptionHandling().accessDeniedPage("/error403");
-							} catch (Exception e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-                }
-                                
-                ).formLogin(
-                        form -> form
-                                .loginPage("/login")
-                                .loginProcessingUrl("/login")
-                                
-                                .defaultSuccessUrl("/index",true) 
-                                   
-                                .permitAll()
-                ).logout(
-                        logout -> logout
-                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                                .permitAll()
-                );
-        
+     
+    	 http.cors().and().csrf().disable();
+     
+//        
+//         authorizeHttpRequests((authorize) ->{
+//                        
+//							try {
+//								authorize
+//								      
+//								        .requestMatchers("/**").permitAll();
+////								       // .requestMatchers("/**").permitAll();
+////
+////								      //  .requestMatchers("/prospectsList","/error403","/addProspect","/delete_prospect/**","updateprospect/**","/").hasAnyRole("USER","ADMIN");
+////
+////								  
+////								
+////								//authorize.requestMatchers("/delete_user/**","api/users","api/basicauth/**").hasRole("ADMIN");
+////								
+//							} catch (Exception e) {
+//								// TODO Auto-generated catch block
+//								e.printStackTrace();
+//							}
+//							
+//         }
+//                               
+//              );
+//        
         
         return http.build();
     }

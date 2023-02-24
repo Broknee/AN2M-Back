@@ -1,6 +1,7 @@
 package com.an2m.service;
 
 import com.an2m.dto.UserDto;
+import com.an2m.dto.userDtoGet;
 import com.an2m.model.User;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public interface UserService {
 
   User findByEmail(String email);
 
-    List<UserDto> findAllUsers();
+    List<userDtoGet> findAllUsers();
    
 
 	void deleteUserById(Long id);
