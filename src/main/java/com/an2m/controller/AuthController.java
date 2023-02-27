@@ -24,7 +24,7 @@ import com.an2m.service.UserService;
 @Controller
 @RestController
 @RequestMapping(path = "api")
-@Slf4j
+
 public class AuthController {
 
 	private UserService userService;
