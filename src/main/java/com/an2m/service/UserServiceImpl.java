@@ -1,11 +1,10 @@
 package com.an2m.service;
 
-
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.an2m.dto.UserDto;
+import com.an2m.dto.userDtoGet;
 import com.an2m.model.Role;
 import com.an2m.model.User;
 import com.an2m.repository.RoleRepository;
@@ -92,13 +91,12 @@ public class UserServiceImpl implements UserService {
         
         return roleRepository.save(role);
     }
+	
 
 	@Override
 	public void deleteUserById(Long id) {
 		// TODO Auto-generated method stub
 		userRepository.deleteById(id);
 	}
-
-	
 
 }
