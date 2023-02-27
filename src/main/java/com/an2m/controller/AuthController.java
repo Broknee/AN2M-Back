@@ -1,4 +1,8 @@
 package com.an2m.controller;
+import jakarta.validation.Valid;
+import jakarta.websocket.server.PathParam;
+import lombok.extern.slf4j.Slf4j;
+
 
 import java.util.List;
 
@@ -20,6 +24,7 @@ import com.an2m.service.UserService;
 @Controller
 @RestController
 @RequestMapping(path = "api")
+@Slf4j
 public class AuthController {
 
 	private UserService userService;
@@ -54,8 +59,12 @@ public class AuthController {
 	public String deleteUser(@PathVariable(value = "id") Long id) {
 		userService.deleteUserById(id);
 
-		return "redirect:/users";
-	}
+    // handler method to handle register user form submit request
+    @PostMapping("/save")
+    public void registration (@RequestBody UserDto user){
+    	//log.info("nom:{},prénom : {0}",user.getNom(),user.getPrenom());
+        userService.saveUser(user);
+    }
 
 	@GetMapping("/users")
 	public List<userDtoGet> listRegisteredUsers(Model model) {
