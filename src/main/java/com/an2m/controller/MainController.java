@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.an2m.dto.PatientDto;
+import com.an2m.dto.UserDto;
 import com.an2m.model.Chambres;
 import com.an2m.model.Lits;
 import com.an2m.model.Patient;
@@ -168,6 +171,14 @@ public class MainController {
 		// call delete employee method
 		this.prospectService.deleteProspect(id);
 		return "redirect:/prospectsList";
+	}
+	
+	@PostMapping("/savePatient")
+	public String registrationPatient(@RequestBody PatientDto patient) {
+		
+		an2mService.savePatient(patient);
+
+		return "Patient créé";
 	}
 
 }
