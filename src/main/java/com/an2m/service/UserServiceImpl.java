@@ -58,14 +58,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> findAllUsers() {
+    public List<userDtoGet> findAllUsers() {
         List<User> users = userRepository.findAll();
         return users.stream().map((user) -> convertEntityToDto(user))
                 .collect(Collectors.toList());
     }
 
-    private UserDto convertEntityToDto(User user){
-        UserDto userDto = new UserDto();
+    private userDtoGet convertEntityToDto(User user){
+        userDtoGet userDto = new userDtoGet();
         String[] name = user.getName().split(" ");
         userDto.setFirstName(name[0]);
         userDto.setLastName(name[1]);

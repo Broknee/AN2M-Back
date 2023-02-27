@@ -18,6 +18,7 @@ public class An2mService {
 	private PatientRepo patientRepo;
 	@Autowired
 	private Suivi_patientRepo suivi_patientRepo;
+
 	public ChambreRepository getChambresRepo() {
 		return chambresRepo;
 	}

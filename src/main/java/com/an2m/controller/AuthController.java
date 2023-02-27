@@ -58,13 +58,11 @@ public class AuthController {
 	@GetMapping("/delete_user/{id}")
 	public String deleteUser(@PathVariable(value = "id") Long id) {
 		userService.deleteUserById(id);
+		return"ok";
+		
+	}
 
-    // handler method to handle register user form submit request
-    @PostMapping("/save")
-    public void registration (@RequestBody UserDto user){
-    	//log.info("nom:{},prénom : {0}",user.getNom(),user.getPrenom());
-        userService.saveUser(user);
-    }
+    
 
 	@GetMapping("/users")
 	public List<userDtoGet> listRegisteredUsers(Model model) {
