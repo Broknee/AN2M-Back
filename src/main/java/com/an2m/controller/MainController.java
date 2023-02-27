@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -177,8 +178,13 @@ public class MainController {
 	public String registrationPatient(@RequestBody PatientDto patient) {
 		
 		an2mService.savePatient(patient);
-
+		
 		return "Patient créé";
 	}
-
+	
+	@GetMapping("/patient/{id}")
+	public ResponseEntity<Optional<Patient>> getPatient(@PathVariable int id) {
+		Optional<Patient> patientDto = an2mService.getPatientRepo().findById(id);
+		return ResponseEntity.ok().body(patientDto);
+	}
 }

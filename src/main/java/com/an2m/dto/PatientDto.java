@@ -38,10 +38,6 @@ public class PatientDto {
 			@NotEmpty String tel_urgent, @NotEmpty @NotEmpty Date date_entree, @NotEmpty @NotEmpty Date date_sortie,
 			@NotEmpty String raison_saijour, @NotEmpty String nom_urgent) {
 		
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-		String entree =simpleDateFormat.format(date_entree);
-		String sortie =simpleDateFormat.format(date_sortie);
-		
 		
 		this.id = id;
 		this.nom = nom;

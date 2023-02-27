@@ -46,7 +46,9 @@ public class An2mService {
 		this.suivi_patientRepo = suivi_patientRepo;
 	}
 	public void savePatient(PatientDto patientDTO) {
+		
 		Patient patient= new Patient();
+		
 		patient.setNom(patientDTO.getNom());
 		patient.setPrenom(patientDTO.getPrenom());
 		patient.setSecu(patientDTO.getSecu());
