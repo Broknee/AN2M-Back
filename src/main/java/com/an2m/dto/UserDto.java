@@ -25,7 +25,7 @@ public class UserDto
     private String password;
 
     @NotEmpty(message = "Password should not be empty")
-    private String assignation;
+    private String roles;
     
     
    
