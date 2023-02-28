@@ -13,6 +13,7 @@ import com.an2m.repository.UserRepository;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,11 +35,11 @@ public class UserServiceImpl implements UserService {
 		User user = new User();
 		user.setName(userDto.getFirstName() + " " + userDto.getLastName());
 		user.setEmail(userDto.getEmail());
-
+        
 		user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 		
-     User userexit=userRepository.findByEmail(userDto.getEmail());
-		if (userexit==null) {
+     User userExit=userRepository.findByEmail(userDto.getEmail());
+		if (userExit==null) {
 	Role	role = checkRoleExist(userDto.getAssignation());
 
 		user.setRoles(Arrays.asList(role));
@@ -46,6 +47,21 @@ public class UserServiceImpl implements UserService {
 		}
 		
 
+	}
+	
+	public void modifyUserInfo(UserDto userDto) {
+		
+		 
+		Optional<User> user =userRepository.findById(userDto.getId()) ;
+		 System.out.println(user.get().getId());
+		user.get().setPassword(userDto.getPassword());
+		user.get().setId(userDto.getId());
+		
+		user.get().setName(userDto.getFirstName() + " " + userDto.getLastName());
+		user.get().setEmail(userDto.getEmail());
+	   
+		userRepository.save(user.get());
+		
 	}
 
 	@Override
@@ -66,6 +82,7 @@ public class UserServiceImpl implements UserService {
 		userDto.setLastName(name[1]);
 		userDto.setEmail(user.getEmail());
 		userDto.setId(user.getId());
+		userDto.setPassword(user.getPassword());
 		// On boucle sur les roles pour recuperer les noms des roles du User en question
 		for (Role element : user.getRoles()) {
 			userDto.getRoles().add(element.getName());

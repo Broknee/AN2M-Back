@@ -1,8 +1,4 @@
 package com.an2m.controller;
-import jakarta.validation.Valid;
-import jakarta.websocket.server.PathParam;
-import lombok.extern.slf4j.Slf4j;
-
 
 import java.util.List;
 
@@ -18,13 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.an2m.dto.UserDto;
 import com.an2m.dto.userDtoGet;
+import com.an2m.model.User;
 import com.an2m.service.UserService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @Controller
 @RestController
 @RequestMapping(path = "api")
-
 public class AuthController {
 
 	private UserService userService;
@@ -33,12 +29,17 @@ public class AuthController {
 		this.userService = userService;
 	}
 
+	
+	
+	
 	// handler method to handle user registration request
-	@GetMapping("register")
-	public String showRegistrationForm(Model model) {
-		UserDto user = new UserDto();
-		model.addAttribute("user", user);
-		return "register";
+	@PostMapping("/modifyUserInfo")
+	public String modifyUserInfo(@RequestBody UserDto userDto) {
+		
+		 userService.modifyUserInfo(userDto);
+		 System.out.println(userDto.getId()+userDto.getFirstName()+userDto.getLastName());
+		
+		return "Modified";
 	}
 
 	@GetMapping("/error403")
@@ -49,7 +50,15 @@ public class AuthController {
 	// handler method to handle register user form submit request
 	@PostMapping("/save")
 	public String registration(@RequestBody UserDto user) {
-		// User existing = userService.findByEmail(user.getEmail());
+		 User existing = userService.findByEmail(user.getEmail());
+		if(existing!=null)return "email exist";
+//		if(user.getPassword()==null) {
+//			  User  existUser = userService.findById(user.getId());
+//			    myCustomer.phone = phone;
+//			    repo.save(myCustomer);
+//			
+			
+		
 
 		userService.saveUser(user);
 		return "ok";
@@ -58,16 +67,13 @@ public class AuthController {
 	@GetMapping("/delete_user/{id}")
 	public String deleteUser(@PathVariable(value = "id") Long id) {
 		userService.deleteUserById(id);
-		return"ok";
-		
+
+		return "ok";
 	}
 
-    
-
 	@GetMapping("/users")
-	public List<userDtoGet> listRegisteredUsers(Model model) {
-		List<userDtoGet> users = userService.findAllUsers();
-		model.addAttribute("users", users);
+	public List<userDtoGet> listRegisteredUsers() {
+	
 		return userService.findAllUsers();
 	}
 }
