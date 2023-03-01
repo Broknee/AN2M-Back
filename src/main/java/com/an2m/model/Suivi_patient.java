@@ -43,6 +43,38 @@ public class Suivi_patient {
 	@ManyToOne
 	@JoinColumn( name="patient_id" )
 	private Patient patient;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getCom() {
+		return com;
+	}
+
+	public void setCom(String com) {
+		this.com = com;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
 	
 
 }

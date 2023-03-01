@@ -31,26 +31,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveUser(UserDto userDto) {
-    	
-        User user = new User();
-        user.setName(userDto.getFirstName() + " " + userDto.getLastName());
-        user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
-        
+	public void saveUser(UserDto userDto) {
+    	System.out.println(userDto.getFirstName());
+		User user = new User();
+		user.setName(userDto.getFirstName() + " " + userDto.getLastName());
+		user.setEmail(userDto.getEmail());
 
-        //encrypt the password once we integrate spring security
-        //user.setPassword(userDto.getPassword()); 
-        //Role role = roleRepository.findByName("ROLE_USER");
-        Role role;
-        
-        
-        role = checkRoleExist(userDto.getAssignation());
-       
-        user.setRoles(Arrays.asList(role));
-      
-        userRepository.save(user);
-    }
+		user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+		
+     User userexit=userRepository.findByEmail(userDto.getEmail());
+		if (userexit==null) {
+	Role	role = checkRoleExist(userDto.getAssignation());
+
+		user.setRoles(Arrays.asList(role));
+		userRepository.save(user);
+		}
+		
+
+	}
 
     @Override
     public User findByEmail(String email) {
@@ -98,5 +96,13 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		userRepository.deleteById(id);
 	}
+
+	@Override
+	public User findById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 
 }

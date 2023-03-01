@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.an2m.dto.PatientDto;
+import com.an2m.dto.SuiviPatientDto;
 import com.an2m.dto.UserDto;
 import com.an2m.model.Chambres;
 import com.an2m.model.Lits;
@@ -175,16 +177,25 @@ public class MainController {
 	}
 	
 	@PostMapping("/savePatient")
-	public String registrationPatient(@RequestBody PatientDto patient) {
+	public String registrationPatient(@RequestBody PatientDto patientDto) {
 		
-		an2mService.savePatient(patient);
+		an2mService.savePatient(patientDto);
 		
 		return "Patient créé";
 	}
 	
 	@GetMapping("/patient/{id}")
-	public ResponseEntity<Optional<Patient>> getPatient(@PathVariable int id) {
-		Optional<Patient> patientDto = an2mService.getPatientRepo().findById(id);
-		return ResponseEntity.ok().body(patientDto);
+	public ResponseEntity<Optional<Patient>> getPatient(@PathVariable long id) {
+		Optional<Patient> patient = an2mService.getPatientRepo().findById(id);
+		return ResponseEntity.ok().body(patient);
+	}
+	
+	@PostMapping("/suiviPatient")
+	
+	public String registrationSuiviPat( @RequestBody SuiviPatientDto suiviPatientDto) {
+		
+		an2mService.createSuiviPatient(suiviPatientDto);
+		
+		return "Fiche suivi Patient ok";
 	}
 }

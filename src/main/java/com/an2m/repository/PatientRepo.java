@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.an2m.model.Patient;
 
-public interface PatientRepo extends JpaRepository<Patient, Integer>{
+public interface PatientRepo extends JpaRepository<Patient, Long>{
 
 }

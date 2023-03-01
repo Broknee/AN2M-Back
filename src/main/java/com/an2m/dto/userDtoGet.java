@@ -1,11 +1,7 @@
 package com.an2m.dto;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.an2m.model.Role;
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;

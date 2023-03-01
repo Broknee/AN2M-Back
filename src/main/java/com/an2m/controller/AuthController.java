@@ -5,7 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,7 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.an2m.dto.UserDto;
 import com.an2m.dto.userDtoGet;
+import com.an2m.model.Patient;
+import com.an2m.model.User;
+import com.an2m.repository.UserRepository;
 import com.an2m.service.UserService;
+import com.an2m.service.UserServiceImpl;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @Controller
@@ -28,6 +34,7 @@ import com.an2m.service.UserService;
 public class AuthController {
 
 	private UserService userService;
+	private UserRepository userRepository;
 
 	public AuthController(UserService userService) {
 		this.userService = userService;
@@ -54,6 +61,8 @@ public class AuthController {
 		userService.saveUser(user);
 		return "ok";
 	}
+	
+	
 
 	@GetMapping("/delete_user/{id}")
 	public String deleteUser(@PathVariable(value = "id") Long id) {
