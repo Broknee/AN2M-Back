@@ -35,7 +35,7 @@ public class AuthController {
 	// handler method to handle user registration request
 	@PostMapping("/modifyUserInfo")
 	public String modifyUserInfo(@RequestBody UserDto userDto) {
-		
+		System.out.println(userDto.getId()+userDto.getFirstName()+userDto.getLastName());
 		 userService.modifyUserInfo(userDto);
 		 System.out.println(userDto.getId()+userDto.getFirstName()+userDto.getLastName());
 		
