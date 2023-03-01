@@ -15,12 +15,16 @@ public class SuiviPatientDto {
 	@NotEmpty
 	private String com;
 	@NotEmpty
-	
 	private long user_id;
 	@NotEmpty
 	private long patient_id;
 	
 	
+	public SuiviPatientDto() {
+		super();
+	}
+
+
 	public SuiviPatientDto(long id, @NotEmpty String com, @NotEmpty long user, @NotEmpty long patient) {
 		
 		this.id = id;

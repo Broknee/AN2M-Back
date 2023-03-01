@@ -1,6 +1,7 @@
 package com.an2m.controller;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -38,6 +39,9 @@ import com.an2m.repository.Suivi_patientRepo;
 import com.an2m.service.An2mService;
 import com.an2m.service.ProspectService;
 
+import lombok.extern.slf4j.Slf4j;
+import jakarta.validation.Valid;
+@Slf4j
 @CrossOrigin(origins = "http://localhost:4200")
 @Controller
 @RestController
@@ -193,6 +197,8 @@ public class MainController {
 	@PostMapping("/suiviPatient")
 	
 	public String registrationSuiviPat( @RequestBody SuiviPatientDto suiviPatientDto) {
+		
+		System.out.println(suiviPatientDto);
 		
 		an2mService.createSuiviPatient(suiviPatientDto);
 		

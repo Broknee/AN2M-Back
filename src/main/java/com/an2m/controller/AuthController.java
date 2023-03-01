@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +19,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.an2m.dto.SuiviPatientDto;
 import com.an2m.dto.UserDto;
 import com.an2m.dto.userDtoGet;
 import com.an2m.model.Patient;
 import com.an2m.model.User;
 import com.an2m.repository.UserRepository;
+import com.an2m.service.An2mService;
 import com.an2m.service.UserService;
 import com.an2m.service.UserServiceImpl;
 
@@ -35,6 +38,8 @@ public class AuthController {
 
 	private UserService userService;
 	private UserRepository userRepository;
+	@Autowired
+	private An2mService an2mService;
 
 	public AuthController(UserService userService) {
 		this.userService = userService;
@@ -76,6 +81,8 @@ public class AuthController {
 	@GetMapping("/users")
 	public List<userDtoGet> listRegisteredUsers(Model model) {
 		List<userDtoGet> users = userService.findAllUsers();
+		SuiviPatientDto suiviDto = new SuiviPatientDto(1,"mamamdou piqué",1,1);
+		an2mService.createSuiviPatient(suiviDto);
 		model.addAttribute("users", users);
 		return userService.findAllUsers();
 	}
