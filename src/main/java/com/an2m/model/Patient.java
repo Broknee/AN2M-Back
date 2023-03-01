@@ -49,6 +49,6 @@ public class Patient {
 	@Column(nullable = false, unique = false)
 	private Date date_sortie;
 	@Column(nullable = false, unique = false)
-	private String raison_saijour;
+	private String raison_sejour;
 
 }

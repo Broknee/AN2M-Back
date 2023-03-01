@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.an2m.dto.SuiviPatientDto;
 import com.an2m.model.Chambres;
 import com.an2m.model.Lits;
 import com.an2m.model.Patient;
@@ -86,12 +88,12 @@ public class MainController {
 		return an2mService.getPatientRepo().findAll();
 	}
 
-	@GetMapping("/addPatient")
-	public void addPatient(Patient patient) {
+	@PostMapping("/addPatient")
+	public String addPatient(@RequestBody Patient patient) {
 
 		an2mService.getPatientRepo().save(patient);
 		
-
+		return "Patient bien ajouté dans la base de données";
 	}
 	
 	@GetMapping("/Suivi_patient/{id}")
@@ -105,6 +107,18 @@ public class MainController {
 
 		return an2mService.getPatientRepo().findAll();
 
+	}
+	
+
+	@PostMapping("/suiviPatient")
+	
+	public String registrationSuiviPat( @RequestBody SuiviPatientDto suiviPatientDto) {
+		
+		System.out.println(suiviPatientDto);
+		
+		an2mService.createSuiviPatient(suiviPatientDto);
+		
+		return "Fiche suivi Patient ok";
 	}
 
 

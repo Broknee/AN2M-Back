@@ -35,15 +35,12 @@ public class UserServiceImpl implements UserService {
 		User user = new User();
 		user.setName(userDto.getFirstName() + " " + userDto.getLastName());
 		user.setEmail(userDto.getEmail());
-		System.out.println(userDto.getPassword());
-		System.out.println(userDto.getFirstName());
-		System.out.println(userDto.getLastName());
         
 		user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 		
      User userExit=userRepository.findByEmail(userDto.getEmail());
 		if (userExit==null) {
-	Role	role = checkRoleExist(userDto.getRoles());
+	Role	role = checkRoleExist(userDto.getAssignation());
 
 		user.setRoles(Arrays.asList(role));
 		userRepository.save(user);
@@ -105,5 +102,6 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		userRepository.deleteById(id);
 	}
+	
 
 }
