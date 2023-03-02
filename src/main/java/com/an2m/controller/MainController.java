@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.an2m.dto.LitsDto;
+import com.an2m.dto.LitsDtoUpdate;
 import com.an2m.dto.SuiviPatientDto;
 import com.an2m.model.Chambres;
 import com.an2m.model.Lits;
@@ -187,4 +189,21 @@ public class MainController {
 		return "redirect:/prospectsList";
 	}
 
+	
+	@GetMapping("/listeLits")
+	public List<LitsDto> listLits() {
+		List<LitsDto> lits = an2mService.findAllUsers();
+		
+		return lits;
+	}
+	
+	@PostMapping("/updateLits")
+	
+		public String updateLit( @RequestBody LitsDtoUpdate litDto) {
+				
+		an2mService.modifyDispoLits(litDto);
+		
+		return "Lit Update";
+	}
+	
 }

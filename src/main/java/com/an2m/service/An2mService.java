@@ -1,11 +1,18 @@
 package com.an2m.service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.an2m.dto.LitsDto;
+import com.an2m.dto.LitsDtoUpdate;
 import com.an2m.dto.SuiviPatientDto;
+import com.an2m.model.Chambres;
+import com.an2m.model.Lits;
 import com.an2m.model.Patient;
 import com.an2m.model.Suivi_patient;
 import com.an2m.model.User;
@@ -98,4 +105,49 @@ public class An2mService {
 	        suivi_patientRepo.save(suivi);    
 	        System.out.println("yo"+suivi.getCom());
 	    }
+	  
+	  public List<LitsDto> findAllUsers() {
+		  List<Lits> lits = litsRepo.findAll();
+	        return lits.stream().map((lit) -> convertEntityToDto(lit))
+	                .collect(Collectors.toList());
+	    }
+	    
+	    private LitsDto convertEntityToDto(Lits lit){
+	    	
+	        LitsDto litDto = new LitsDto();
+	        
+	        litDto.setId(lit.getId());
+	        litDto.setStatus(lit.getStatus());
+	        
+	        Patient patient ;
+	        patient= lit.getPatient();
+	        litDto.setPatient(patient);
+	        
+	        Chambres chambre;
+	        chambre= lit.getChambre();
+	        litDto.setChambre(chambre);
+	          
+	        return litDto;
+	    }
+	    
+	    
+	    public void modifyDispoLits(LitsDtoUpdate litDto) {
+			
+			 Lits lit= litsRepo.findById(litDto.getId()).get();
+			 lit.setId(litDto.getId());
+			 lit.setStatus(litDto.getStatus());
+			 
+			 Patient patient ;
+		     patient= patientRepo.findById(litDto.getPatient_id()).get();
+		     lit.setPatient(patient);
+		     
+		     Chambres chambre;
+		     chambre= chambresRepo.findById(litDto.getChambre_id()).get();
+			 lit.setChambre(chambre);
+			 
+			
+			 litsRepo.save(lit);
+			
+		}
+	  
 }
