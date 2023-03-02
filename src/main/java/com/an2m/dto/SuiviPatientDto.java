@@ -11,27 +11,27 @@ public class SuiviPatientDto {
 	@NotEmpty
 	private String com;
 	@NotEmpty
-	private long users_id;
+	private long usersid;
 	@NotEmpty
-	private int patient_id;
+	private int patientid;
 	
 	
 	public SuiviPatientDto() {
-		super();
+		
 	}
 
 
-	public SuiviPatientDto(int id, @NotEmpty String com, @NotEmpty long user, @NotEmpty int patient) {
+	public SuiviPatientDto(int id,  String com, long usersid,  int patientid) {
 		
 		this.id = id;
 		this.com = com;
-		this.users_id = user;
-		this.patient_id = patient;
+		this.usersid = usersid;
+		this.patientid = patientid;
 	}
 
 
 	public int getId() {
-		return this.id;
+		return id;
 	}
 
 
@@ -50,32 +50,25 @@ public class SuiviPatientDto {
 	}
 
 
-	public long getUserId() {
-		return users_id;
-	}
-	
-	
-
-
-	public void setUserId(long users_id) {
-		this.users_id = users_id;
+	public long getUsersid() {
+		return usersid;
 	}
 
 
-	public int getPatientId() {
-		return patient_id;
+	public void setUsersid(long usersid) {
+		this.usersid = usersid;
 	}
 
 
-	public void setPatientId(int patient) {
-		this.patient_id = patient;
+	public int getPatientid() {
+		return patientid;
 	}
 
 
-	@Override
-	public String toString() {
-		return "SuiviPatientDto [id=" + id + ", com=" + com + ", user=" + users_id + ", patient=" + patient_id + "]";
+	public void setPatientid(int patientid) {
+		this.patientid = patientid;
 	}
+
 	
 	
 }

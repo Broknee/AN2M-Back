@@ -114,7 +114,7 @@ public class MainController {
 	
 	public String registrationSuiviPat( @RequestBody SuiviPatientDto suiviPatientDto) {
 		
-		System.out.println(suiviPatientDto);
+		System.out.println(suiviPatientDto.getPatientid());
 		
 		an2mService.createSuiviPatient(suiviPatientDto);
 		

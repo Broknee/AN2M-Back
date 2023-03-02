@@ -54,20 +54,21 @@ public class An2mService {
 	
 	  public void createSuiviPatient (SuiviPatientDto suiviPatientDto) {
 	    	
-	    	 System.out.println(suiviPatientDto);
+	    	 System.out.println("le suivi="+suiviPatientDto.getCom());
 	        Suivi_patient suivi = new Suivi_patient();
 	        
 	        
-	        suivi.setId((int) suiviPatientDto.getId());
+	        //suivi.setId((int) suiviPatientDto.getId());
 	        suivi.setCom(suiviPatientDto.getCom());
+	        System.out.println("le suivicom:"+suivi.getCom());
 	        
 	        
-	        User user ;
-	        user=userRepo.findById(suiviPatientDto.getUserId()).get();
+	         
+	      User  user=userRepo.findById(suiviPatientDto.getUsersid()).get();
 	        suivi.setUser(user);
 	        System.out.println(user.getId());
 	        Optional<Patient> patient ;
-	        patient= patientRepo.findById(suiviPatientDto.getPatientId());
+	        patient= patientRepo.findById(suiviPatientDto.getPatientid());
 	        suivi.setPatient(patient.get());
 	        
 	        
