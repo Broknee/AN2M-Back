@@ -20,7 +20,7 @@ public class LitsDto {
 	
 	public LitsDto() {
 	}
-	public LitsDto(int id, @NotEmpty String status, @NotEmpty @NotEmpty Chambres chambre, @NotEmpty @NotEmpty Patient patient) {
+	public LitsDto(int id, @NotEmpty String status,  @NotEmpty Chambres chambre, @NotEmpty Patient patient) {
 
 		this.id = id;
 		this.status = status;

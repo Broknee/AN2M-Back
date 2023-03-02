@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.an2m.dto.ChambresDto;
 import com.an2m.dto.LitsDto;
+import com.an2m.dto.LitsDtoUpdate;
 import com.an2m.dto.PatientDto;
 import com.an2m.dto.SuiviPatientDto;
 import com.an2m.dto.UserDto;
@@ -132,6 +133,26 @@ public class An2mService {
           
         return litDto;
     }
+    
+    
+    public void modifyDispoLits(LitsDtoUpdate litDto) {
+		
+		 Lits lit= litsRepo.findById(litDto.getId()).get();
+		 lit.setId(litDto.getId());
+		 lit.setStatus(litDto.getStatus());
+		 
+		 Patient patient ;
+	     patient= patientRepo.findById(litDto.getPatient_id()).get();
+	     lit.setPatient(patient);
+	     
+	     Chambres chambre;
+	     chambre= chambresRepo.findById(litDto.getChambre_id()).get();
+		 lit.setChambre(chambre);
+		 
+		
+		 litsRepo.save(lit);
+		
+	}
 	
 
 }

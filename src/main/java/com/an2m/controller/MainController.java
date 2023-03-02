@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.an2m.dto.LitsDto;
+import com.an2m.dto.LitsDtoUpdate;
 import com.an2m.dto.PatientDto;
 import com.an2m.dto.SuiviPatientDto;
 import com.an2m.dto.UserDto;
@@ -211,4 +212,15 @@ public class MainController {
 		
 		return lits;
 	}
+	
+	@PostMapping("/updateLits")
+	
+		public String updateLit( @RequestBody LitsDtoUpdate litDto) {
+				
+		an2mService.modifyDispoLits(litDto);
+		
+		return "Lit Update";
+	}
+	
+	
 }
