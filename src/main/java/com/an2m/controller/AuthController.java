@@ -81,8 +81,7 @@ public class AuthController {
 	@GetMapping("/users")
 	public List<userDtoGet> listRegisteredUsers(Model model) {
 		List<userDtoGet> users = userService.findAllUsers();
-		SuiviPatientDto suiviDto = new SuiviPatientDto(1,"mamamdou piqué",1,1);
-		an2mService.createSuiviPatient(suiviDto);
+		
 		model.addAttribute("users", users);
 		return userService.findAllUsers();
 	}

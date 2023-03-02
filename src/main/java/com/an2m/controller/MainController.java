@@ -24,9 +24,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.an2m.dto.LitsDto;
 import com.an2m.dto.PatientDto;
 import com.an2m.dto.SuiviPatientDto;
 import com.an2m.dto.UserDto;
+import com.an2m.dto.userDtoGet;
 import com.an2m.model.Chambres;
 import com.an2m.model.Lits;
 import com.an2m.model.Patient;
@@ -197,11 +199,16 @@ public class MainController {
 	@PostMapping("/suiviPatient")
 	
 	public String registrationSuiviPat( @RequestBody SuiviPatientDto suiviPatientDto) {
-		
-		System.out.println(suiviPatientDto);
-		
+				
 		an2mService.createSuiviPatient(suiviPatientDto);
 		
 		return "Fiche suivi Patient ok";
+	}
+	
+	@GetMapping("/listeLits")
+	public List<LitsDto> listLits() {
+		List<LitsDto> lits = an2mService.findAllUsers();
+		
+		return lits;
 	}
 }

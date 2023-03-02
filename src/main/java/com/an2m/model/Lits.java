@@ -40,5 +40,31 @@ public class Lits {
 	@ManyToOne
 	@JoinColumn(name = "patient_id")
 	private Patient patient;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public Chambres getChambre() {
+		return chambre;
+	}
+	public void setChambre(Chambres chambre) {
+		this.chambre = chambre;
+	}
+	public Patient getPatient() {
+		return patient;
+	}
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+    
+    
 
 }
