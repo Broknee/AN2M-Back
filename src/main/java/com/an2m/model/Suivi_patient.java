@@ -34,12 +34,12 @@ public class Suivi_patient {
 	@Column(nullable = false, unique = false)
 	private String com;
 	
-	@JsonBackReference
+
 	@ManyToOne
 	@JoinColumn( name="users_id" )
 	private User user;
 	
-	@JsonBackReference
+
 	@ManyToOne
 	@JoinColumn( name="patient_id" )
 	private Patient patient;

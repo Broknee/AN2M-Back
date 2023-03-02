@@ -92,15 +92,9 @@ public class MainController {
 	public String addPatient(@RequestBody Patient patient) {
 
 		an2mService.getPatientRepo().save(patient);
-		
 		return "Patient bien ajouté dans la base de données";
-	}
+	}	
 	
-	@GetMapping("/Suivi_patient/{id}")
-	public Optional<Suivi_patient> Suivi_patient(@PathVariable(value = "id") int id) {
-
-		return an2mService.getSuivi_patientRepo().findById(id);
-	}
 
 	@GetMapping("/ListPatient")
 	public List<Patient> ListPatient() {
@@ -122,6 +116,15 @@ public class MainController {
 	}
 
 
+	@GetMapping("/Suivi_patient/{id}")
+    public List<Suivi_patient> Suivi_patient(@PathVariable(value = "id") int id) {
+        Patient patient =new Patient ();
+        patient.setId(id);
+
+
+
+        return an2mService.getSuivi_patientRepo().findSuivi_patientByPatient(patient);
+    }
 	
 	
 //display a list of prospects
